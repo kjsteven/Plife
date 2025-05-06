@@ -90,8 +90,3 @@ Plife is an Android mobile application designed to streamline healthcare appoint
 - Advanced reporting capabilities
 - Multi-language support
 
-## License
-[Your License Information]
-
-## Contact
-[Your Contact Information]
