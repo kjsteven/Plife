@@ -61,6 +61,29 @@ Plife is an Android mobile application designed to streamline healthcare appoint
 4. Configure google-services.json
 5. Build and run the application
 
+### Security Configuration Setup
+
+Plife uses secure configuration files to protect sensitive credentials:
+
+1. Copy `secure_config_template.json` to `secure_config.json` in the `app/src/main/assets/` directory
+2. Add your actual credentials to `secure_config.json`:
+   ```json
+   {
+     "smtp": {
+       "username": "your-email@gmail.com",
+       "password": "your-app-password",
+       "host": "smtp.gmail.com",
+       "port": "587"
+     },
+     "api_keys": {
+       "firebase": "your-firebase-key"
+     }
+   }
+   ```
+3. The `.gitignore` file is configured to prevent `secure_config.json` from being committed to version control
+
+**IMPORTANT**: Never commit `secure_config.json` to version control. It contains sensitive credentials that should remain private.
+
 ## Usage
 
 ### For Users
@@ -82,6 +105,8 @@ Plife is an Android mobile application designed to streamline healthcare appoint
 - Password protection
 - Data encryption
 - Safe account management
+- Secure credential storage (no hardcoded credentials)
+- Protection of API keys and sensitive data
 
 ## Future Enhancements
 - Integration with payment gateways
@@ -89,4 +114,10 @@ Plife is an Android mobile application designed to streamline healthcare appoint
 - Prescription system
 - Advanced reporting capabilities
 - Multi-language support
+
+## License
+2025 Plife All Rights Reserved. 
+
+## Contact
+For support inquiries, contact plife.app.org@gmail.com
 

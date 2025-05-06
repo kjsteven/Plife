@@ -33,17 +33,22 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+// Import the SecureConfig class
+import com.example.plife.util.SecureConfig;
+
 public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppointmentViewHolder> {
 
     private List<Appointment> appointmentList;
     private Context context;
     private static DatabaseReference databaseReference;
 
-
     public ManageAdapter(List<Appointment> appointmentList, Context context) {
         this.appointmentList = appointmentList;
         this.context = context;
         this.databaseReference = FirebaseDatabase.getInstance().getReference();
+        
+        // Load secure configuration when adapter is created
+        SecureConfig.loadConfig(context);
     }
 
     @NonNull
@@ -74,8 +79,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
         private TextView textUserName, appointmentTitle, appointmentDate, appointmentTime, appointmentStatus, appointmentDescription;
         private ImageView imageViewMenu;
 
-
-
         public ManageAppointmentViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -102,7 +105,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
             // Set up the ImageView with a popup menu
             imageViewMenu.setOnClickListener(v -> showPopupMenu(v, appointment, context));
         }
-
 
         private void showPopupMenu(View view, Appointment appointment, Context context) {
             // Creating the instance of PopupMenu
@@ -187,7 +189,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
                     });
         }
 
-
         private void DeleteAppointment(Appointment appointment) {
             if (databaseReference == null) {
                 // Handle the case where the database reference is not initialized
@@ -217,7 +218,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
                         }
                     });
         }
-
 
         private void confirmAppointment(Appointment appointment) {
 
@@ -270,28 +270,27 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    // Sender's email address and password
-                    final String username = "plife.app.org@gmail.com";
-                    final String appPassword = "wxzf hfie fklr hxco";
+                    // Get credentials from secure configuration
+                    final String username = SecureConfig.getSmtpUsername();
+                    final String appPassword = SecureConfig.getSmtpPassword();
+                    final String host = SecureConfig.getSmtpHost();
+                    final String port = SecureConfig.getSmtpPort();
 
                     // SMTP server settings
                     Properties props = new Properties();
                     props.put("mail.smtp.auth", "true");
                     props.put("mail.smtp.starttls.enable", "true");
-                    props.put("mail.smtp.host", "smtp.gmail.com");
-                    props.put("mail.smtp.port", "587");
-
-                    // Get the Session object
-                    Session session = Session.getInstance(props,
-                            new javax.mail.Authenticator() {
-                                protected PasswordAuthentication getPasswordAuthentication() {
-                                    return new PasswordAuthentication(username, appPassword);
-                                }
-                            });
+                    props.put("mail.smtp.host", host);
+                    props.put("mail.smtp.port", port);
 
                     try {
                         // Create a default MimeMessage object
-                        Message message = new MimeMessage(session);
+                        Message message = new MimeMessage(Session.getInstance(props,
+                                new javax.mail.Authenticator() {
+                                    protected PasswordAuthentication getPasswordAuthentication() {
+                                        return new PasswordAuthentication(username, appPassword);
+                                    }
+                                }));
 
                         // Set From: header field of the header
                         message.setFrom(new InternetAddress(username));
@@ -304,7 +303,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
 
                         // Set the actual message
                         message.setText("Dear " + appointment.getName() + ",\n\nYour appointment has been confirmed.\n\nDetails:\n\nService: " + appointment.getTitle() + "\nDescription: " + appointment.getDescription() + "\nDate: " + appointment.getDate() + "\nTime: " + appointment.getTime());
-
 
                         // Send message
                         Transport.send(message);
@@ -320,7 +318,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
             }).start();
         }
 
-
         private void rescheduleAppointment(Appointment appointment) {
             // Send an email to the user about their appointment status
             recscheduleEmail(appointment);
@@ -333,28 +330,27 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    // Sender's email address and password
-                    final String username = "plife.app.org@gmail.com";
-                    final String appPassword = "wxzf hfie fklr hxco";
+                    // Get credentials from secure configuration
+                    final String username = SecureConfig.getSmtpUsername();
+                    final String appPassword = SecureConfig.getSmtpPassword();
+                    final String host = SecureConfig.getSmtpHost();
+                    final String port = SecureConfig.getSmtpPort();
 
                     // SMTP server settings
                     Properties props = new Properties();
                     props.put("mail.smtp.auth", "true");
                     props.put("mail.smtp.starttls.enable", "true");
-                    props.put("mail.smtp.host", "smtp.gmail.com");
-                    props.put("mail.smtp.port", "587");
-
-                    // Get the Session object
-                    Session session = Session.getInstance(props,
-                            new javax.mail.Authenticator() {
-                                protected PasswordAuthentication getPasswordAuthentication() {
-                                    return new PasswordAuthentication(username, appPassword);
-                                }
-                            });
+                    props.put("mail.smtp.host", host);
+                    props.put("mail.smtp.port", port);
 
                     try {
                         // Create a default MimeMessage object
-                        Message message = new MimeMessage(session);
+                        Message message = new MimeMessage(Session.getInstance(props,
+                                new javax.mail.Authenticator() {
+                                    protected PasswordAuthentication getPasswordAuthentication() {
+                                        return new PasswordAuthentication(username, appPassword);
+                                    }
+                                }));
 
                         // Set From: header field of the header
                         message.setFrom(new InternetAddress(username));
@@ -392,28 +388,27 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    // Sender's email address and password
-                    final String username = "plife.app.org@gmail.com";
-                    final String appPassword = "wxzf hfie fklr hxco";
+                    // Get credentials from secure configuration
+                    final String username = SecureConfig.getSmtpUsername();
+                    final String appPassword = SecureConfig.getSmtpPassword();
+                    final String host = SecureConfig.getSmtpHost();
+                    final String port = SecureConfig.getSmtpPort();
 
                     // SMTP server settings
                     Properties props = new Properties();
                     props.put("mail.smtp.auth", "true");
                     props.put("mail.smtp.starttls.enable", "true");
-                    props.put("mail.smtp.host", "smtp.gmail.com");
-                    props.put("mail.smtp.port", "587");
-
-                    // Get the Session object
-                    Session session = Session.getInstance(props,
-                            new javax.mail.Authenticator() {
-                                protected PasswordAuthentication getPasswordAuthentication() {
-                                    return new PasswordAuthentication(username, appPassword);
-                                }
-                            });
+                    props.put("mail.smtp.host", host);
+                    props.put("mail.smtp.port", port);
 
                     try {
                         // Create a default MimeMessage object
-                        Message message = new MimeMessage(session);
+                        Message message = new MimeMessage(Session.getInstance(props,
+                                new javax.mail.Authenticator() {
+                                    protected PasswordAuthentication getPasswordAuthentication() {
+                                        return new PasswordAuthentication(username, appPassword);
+                                    }
+                                }));
 
                         // Set From: header field of the header
                         message.setFrom(new InternetAddress(username));
@@ -474,7 +469,5 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageAppo
                         }
                     });
         }
-
-
     }
 }
