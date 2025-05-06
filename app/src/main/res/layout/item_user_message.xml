@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- item_user_message.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:layout_gravity="end">
+
+    <TextView
+        android:id="@+id/textViewUserMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/user_message_background"
+        android:padding="10dp"
+        android:textColor="@android:color/white"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/textViewMessageTimestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewUserMessage"
+        android:paddingTop="4dp"
+        android:text="Message timestamp"
+        android:textColor="#AAAAAA"
+        android:layout_alignParentEnd="true"
+        android:textSize="12sp" />
+
+</RelativeLayout>

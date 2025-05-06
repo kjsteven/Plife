@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "689688390717",
+    "project_id": "plife-c0999",
+    "storage_bucket": "plife-c0999.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689688390717:android:cee0c52d20d270cf784e54",
+        "android_client_info": {
+          "package_name": "com.example.plife"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8RVxpcQwCIzg0sxScugRKFcs8-umwYUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

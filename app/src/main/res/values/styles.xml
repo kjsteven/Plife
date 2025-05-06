@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- Custom style to remove underline from EditText -->
+    <style name="NoUnderlineEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@null</item>
+    </style>
+</resources>

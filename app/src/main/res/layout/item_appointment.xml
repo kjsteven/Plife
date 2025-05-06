@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="18dp"
+    android:background="@drawable/rounded_corners_lavender"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Appointment Title"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"/>
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Appointment Description"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Date: dd/mm/yyyy"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time: hh:mm am/pm"
+        android:textSize="16sp"/>
+
+    <!-- Appointment Status -->
+
+    <TextView
+        android:id="@+id/textViewStatus"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status: Pending"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/deleteAppointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_menu"
+        android:layout_gravity="end"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="showPopupMenu"/>
+
+</LinearLayout>
+
+
+

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AppointmentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AppointmentFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ViewFlipper
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:flipInterval="3000"
+            android:autoStart="true"
+            android:inAnimation="@android:anim/slide_in_left"
+            android:outAnimation="@android:anim/slide_out_right">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="139dp"
+            android:gravity="center"
+            android:src="@drawable/appointment"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:src="@drawable/schedule"/>
+
+        </ViewFlipper>
+
+        <!-- Date Picker Button -->
+        <Button
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Date"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Display Selected Date -->
+        <EditText
+            android:id="@+id/dateEditText"
+            android:background="@drawable/box_border"
+            android:hint="Selected Date"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawablePadding="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:focusable="false" />
+
+        <!-- Time Picker Button -->
+        <Button
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Time"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Display Selected Time -->
+        <EditText
+            android:id="@+id/timeEditText"
+            android:background="@drawable/box_border"
+            android:hint="Selected Time"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawablePadding="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="20dp"
+            android:focusable="false" />
+
+        <Spinner
+            android:id="@+id/servicesSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:textSize="16sp"
+            android:background="@drawable/box_border"
+            android:popupBackground="@android:color/white"
+            android:dropDownVerticalOffset="50dp"
+            android:dropDownWidth="match_parent"
+            android:spinnerMode="dropdown"/>
+
+
+        <AutoCompleteTextView
+            android:id="@+id/descriptionInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/box_border"
+            android:drawablePadding="8dp"
+            android:hint="Service Description"
+            android:focusable="false" />
+
+
+
+        <!-- Create Appointment Button -->
+        <Button
+            android:id="@+id/createAppointmentButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/box_border"
+            android:drawablePadding="8dp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:text="BOOK"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
